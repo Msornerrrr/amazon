@@ -1,7 +1,6 @@
-# CSCI-104 Homework 2
+# School Projects: Amazon
 Email: hjiang86@usc.edu
 Name: Richard Jiang
-Section: 29930R 2:00 - 3:20 pm
 OS: linux (recommend)
 
 ## How to run
@@ -21,12 +20,12 @@ Note: need to have all object.o available to produce executable
 
 Run with given database.txt file (Note: path to .txt file must be provided as second argument)
 ``` powershell
-./amazon database.txt 
+./amazon db/database.txt 
 ```
 
 use valgrind to check memory leak
 ``` powershell
-valgrind --tool=memcheck --leak-check=yes ./amazon
+make valgrind
 ```
 
 clean object and executable files

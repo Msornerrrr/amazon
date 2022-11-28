@@ -1,12 +1,16 @@
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
 BUILD = build
+VALGRIND := valgrind --tool=memcheck --leak-check=yes
 # Uncomment for parser DEBUG
 #DEFS=-DDEBUG
 
 OBJS=$(BUILD)/amazon.o $(BUILD)/user.o $(BUILD)/db_parser.o $(BUILD)/product.o $(BUILD)/product_parser.o $(BUILD)/util.o $(BUILD)/book.o $(BUILD)/clothing.o $(BUILD)/movie.o $(BUILD)/mydatastore.o
 
 all: amazon
+
+valgrind: amazon
+	$(VALGRIND) ./amazon
 
 amazon: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ $(OBJS)
