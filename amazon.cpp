@@ -21,9 +21,11 @@ void displayProducts(vector<Product*>& hits);
 
 int main(int argc, char* argv[])
 {
+    string filepath;
     if(argc < 2) {
-        cerr << "Please specify a database file" << endl;
-        return 1;
+        filepath = "db/default_database.txt";
+    } else {
+        filepath = "db/" + string(argv[1]);
     }
 
     /****************
@@ -31,7 +33,6 @@ int main(int argc, char* argv[])
      *  DataStore type to your derived type
      ****************/
     MyDataStore ds;
-
 
 
     // Instantiate the individual section and product parsers we want
@@ -47,7 +48,7 @@ int main(int argc, char* argv[])
     parser.addSectionParser("users", userSectionParser);
 
     // Now parse the database to populate the DataStore
-    if( parser.parse(argv[1], ds) ) {
+    if( parser.parse(filepath, ds) ) {
         cerr << "Error parsing!" << endl;
         return 1;
     }
@@ -59,7 +60,7 @@ int main(int argc, char* argv[])
     cout << "  ADD username search_hit_number     " << endl;
     cout << "  VIEWCART username                  " << endl;
     cout << "  BUYCART username                   " << endl;
-    cout << "  QUIT new_db_filename               " << endl;
+    cout << "  QUIT (new_db_filename / override)  " << endl;
     cout << "====================================" << endl;
 
     vector<Product*> hits;
@@ -94,6 +95,11 @@ int main(int argc, char* argv[])
             else if ( cmd == "QUIT") {
                 string filename;
                 if(ss >> filename) {
+                    if(filename == "override") {
+                        filename = filepath;
+                    } else {
+                        filename = "db/" + filename;
+                    }
                     ofstream ofile(filename.c_str());
                     ds.dump(ofile);
                     ofile.close();
