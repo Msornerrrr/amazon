@@ -73,7 +73,7 @@ QUIT
 ```
 quit but override the old db file with new changes
 ```
-QUIT overriude
+QUIT override
 ```
 quit but save changes to db to a new file
 ```
