@@ -1,7 +1,7 @@
 # School Projects: Amazon
-Email: hjiang86@usc.edu
-Name: Richard Jiang
-OS: linux (recommend)
+- Email: hjiang86@usc.edu
+- Name: Richard Jiang
+- OS: linux (recommend)
 
 ## How to run
 First, compile the code (three options)
